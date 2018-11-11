@@ -1,6 +1,6 @@
 ## cizen-phoenix-hello-world
 
-This is a tutorial application for ["Integrating Cizen with Phoenix"]().
+This is a tutorial application for ["Integrating Cizen with Phoenix"](https://medium.com/cizen/integrating-cizen-with-phoenix-f0ee89d1d6d2).
 
 ### Run
 
