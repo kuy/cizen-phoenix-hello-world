@@ -6,22 +6,13 @@ defmodule HelloWorld.Application do
   use Application
 
   def start(_type, _args) do
-    # Required to use "handle"
-    use Cizen.Effectful
-
-    # Launch GreetingAutomaton
-    handle fn id ->
-      perform id, %Cizen.Effects.Start{
-        saga: %HelloWorld.GreetingAutomaton{}
-      }
-    end
-
     # List all child processes to be supervised
     children = [
-      # Start the endpoint when the application starts
-      HelloWorldWeb.Endpoint
-      # Starts a worker by calling: HelloWorld.Worker.start_link(arg)
-      # {HelloWorld.Worker, arg},
+      HelloWorldWeb.Endpoint,
+      %{
+        id: HelloWorld.GreetingAutomaton,
+        start: {Cizen.Saga, :start_link, [%HelloWorld.GreetingAutomaton{}]}
+      }
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
